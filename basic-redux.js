@@ -17,7 +17,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         usuarios: action.name
       }
-      break;
     case 'SHOW_USER':
       return {
         ...state
@@ -33,8 +32,14 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer);
 console.log(store.getState());
 
+
+// SUBSCRIBE o SUSCRIPTION
+// Escucha los cambios, se ejecuta cada vez que el state cambia
+// o se ejecuta un dispatch
+store.subscribe(()=>{
+  console.log('Something change', store.getState());
+})
+
 // Dispatch: es la forma de cambiar el state
 store.dispatch({ type: 'ADD_USER', name: 'Joan' });
-console.log(store.getState());
 store.dispatch({ type: 'SHOW_USER' });
-console.log(store.getState());
